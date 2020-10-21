@@ -1,0 +1,7 @@
+{
+  "git.ignoreLimitWarning": true,
+  "eslint.enable": true,
+  "eslint.options": {
+   "configFile": "D:/myReactApp/currency-converter/.eslintrc.js"
+  },
+}
