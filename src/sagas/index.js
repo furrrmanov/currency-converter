@@ -1,16 +1,21 @@
+import { all } from 'redux-saga/effects'
+
 import {
-  watchFetchData,
+  watchFetchCurrencies,
   watchChangeCurrencyValue,
   watchFetchHistory,
   watchFetchCountries,
-} from "./currencies";
-import { all } from "redux-saga/effects";
+  watchUserSingInRequest,
+  watchReversedCurrecyPanel,
+} from './currencies'
 
 export default function* rootSaga() {
   yield all([
-    watchFetchData(),
+    watchFetchCurrencies(),
     watchChangeCurrencyValue(),
     watchFetchHistory(),
     watchFetchCountries(),
-  ]);
+    watchUserSingInRequest(),
+    watchReversedCurrecyPanel()
+  ])
 }

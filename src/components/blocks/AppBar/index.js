@@ -1,3 +1,3 @@
-import NavigationBar from "./component";
+import NavigationBar from './component'
 
-export default NavigationBar;
+export default NavigationBar

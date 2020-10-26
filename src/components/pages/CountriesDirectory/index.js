@@ -1,3 +1,3 @@
-import CountriesDirectory from "./component";
+import CountriesDirectory from './component'
 
-export default CountriesDirectory;
+export default CountriesDirectory

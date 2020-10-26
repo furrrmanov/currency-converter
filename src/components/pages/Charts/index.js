@@ -1,3 +1,3 @@
-import Charts from "./component";
+import Charts from './component'
 
-export default Charts;
+export default Charts

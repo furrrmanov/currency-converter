@@ -4,13 +4,11 @@ import CurrencyPane from './currency-pane'
 
 export default {
   title: 'CurrencyPane',
-  component: CurrencyPane
+  component: CurrencyPane,
 }
 
 const Template = (args) => <CurrencyPane {...args} />
 
 export const FirstStory = Template.bind({})
 
-FirstStory.args = {
-
-}
+FirstStory.args = {}

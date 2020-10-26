@@ -1,3 +1,3 @@
-import { RouterLink } from "./style";
+import { RouterLink } from './styles'
 
-export default RouterLink;
+export default RouterLink

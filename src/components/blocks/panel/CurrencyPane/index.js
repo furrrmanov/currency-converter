@@ -1,3 +1,3 @@
-import CurrencyPane from "./component";
+import CurrencyPane from './component'
 
-export default CurrencyPane;
+export default CurrencyPane

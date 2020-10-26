@@ -1,3 +1,3 @@
-import SignINPage from "./component";
+import SignINPage from './component'
 
-export default SignINPage;
+export default SignINPage

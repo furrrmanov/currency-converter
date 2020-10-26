@@ -1,3 +1,3 @@
-import Caches from "./component";
+import Caches from './component'
 
-export default Caches;
+export default Caches

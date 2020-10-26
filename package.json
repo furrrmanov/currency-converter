@@ -12,6 +12,7 @@
     "axios": "^0.20.0",
     "axios-cache-adapter": "^2.5.0",
     "currency-flags": "^2.1.2",
+    "dotenv": "^8.2.0",
     "eslint-config-node": "^4.1.0",
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-prettier": "^3.1.4",
@@ -19,6 +20,7 @@
     "i18n-react": "^0.7.0",
     "leaflet": "^1.7.1",
     "moment": "^2.29.1",
+    "ra-data-json-server": "^3.9.4",
     "react": "^16.13.1",
     "react-app-rewire-alias": "^0.1.6",
     "react-app-rewired": "^2.1.6",
@@ -79,6 +81,7 @@
     "eslint-plugin-react": "^7.21.3",
     "eslint-plugin-standard": "^4.0.1",
     "eslint-watch": "^7.0.0",
+    "react-admin": "^3.9.4",
     "react-is": "^16.13.1"
   }
 }

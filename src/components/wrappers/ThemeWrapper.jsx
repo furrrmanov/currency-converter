@@ -1,15 +1,15 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react'
+import { useSelector } from 'react-redux'
 
-import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "styled-components";
-import { createGlobalStyle } from "styled-components";
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
+import { createMuiTheme } from '@material-ui/core/styles'
+import { ThemeProvider } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
-import { themes } from "@/utils/theme";
+import themes from '@/utils/theme'
 
 export default function ThemeWrapper({ children }) {
-  const darkTheme = useSelector(state => state.global.darkTheme);
+  const darkTheme = useSelector((state) => state.theme.darkTheme)
 
   const GlobalStyle = createGlobalStyle`
   body {
@@ -25,6 +25,11 @@ export default function ThemeWrapper({ children }) {
     -moz-osx-font-smoothing: grayscale;
     display:flex;
     justify-content:center;
+  }
+
+  #root {
+    width: 100%;
+    text-align: center;
   }
   
   .reverse-rates-button:hover {
@@ -47,7 +52,7 @@ export default function ThemeWrapper({ children }) {
   .caches-link:hover {
     color: #cad2c5;
   }
-  `;
+  `
 
   const dark = createMuiTheme({
     palette: {
@@ -69,7 +74,7 @@ export default function ThemeWrapper({ children }) {
         hover: themes.darkTheme.primary,
       },
     },
-  });
+  })
 
   const light = createMuiTheme({
     palette: {
@@ -91,7 +96,7 @@ export default function ThemeWrapper({ children }) {
         hover: themes.lightTheme.secondary,
       },
     },
-  });
+  })
 
   return (
     <ThemeProvider theme={darkTheme ? themes.darkTheme : themes.lightTheme}>
@@ -100,5 +105,5 @@ export default function ThemeWrapper({ children }) {
         {children}
       </MuiThemeProvider>
     </ThemeProvider>
-  );
+  )
 }

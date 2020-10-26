@@ -1,3 +1,3 @@
-import RouterLink from "./component";
+import RouterLink from './component'
 
-export default RouterLink;
+export default RouterLink

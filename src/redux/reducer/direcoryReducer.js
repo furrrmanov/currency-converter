@@ -3,36 +3,35 @@ import {
   SET_COUNTRIES_FILTER,
   SET_COUNTRY_SELECTED,
   SET_COUNTRIES_REQUEST,
-} from "./type";
+} from '@/actions'
 
 const initialState = {
   countriesList: [],
-  filter: "",
+  filter: '',
   selectedCountry: {
-    name: "",
-    coordinate: [],
+    name: '',
+    coordinates: [],
   },
-};
+}
 
 export default function directory(state = initialState, { type, payload }) {
   switch (type) {
-
     case SET_COUNTRIES_REQUEST:
       return {
         ...state,
-      };
+      }
 
     case SET_COUNTRIES_LIST:
       return {
         ...state,
         countriesList: payload,
-      };
+      }
 
     case SET_COUNTRIES_FILTER:
       return {
         ...state,
         filter: payload,
-      };
+      }
 
     case SET_COUNTRY_SELECTED:
       return {
@@ -40,11 +39,11 @@ export default function directory(state = initialState, { type, payload }) {
         selectedCountry: {
           ...state.selectedCountry,
           name: payload.name,
-          coordinate: payload.coordinate,
+          coordinates: payload.coordinates,
         },
-      };
+      }
 
     default:
-      return state;
+      return state
   }
 }

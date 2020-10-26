@@ -1,46 +1,40 @@
-import React from "react";
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
-import Button from "@/components/controls/CachesButton";
-import { singIn } from "@/utils/fireBase";
-import { Wrapper } from "./style";
-import { setUserInfo } from "@/actions";
+import { FormattedMessage } from 'react-intl'
+import Button from '@material-ui/core/Button'
+
+import { ROUT_FOR_CONVERTER_PAGE } from '@/constants'
+import { SetuserSingInRequest } from '@/actions'
+
+import { Wrapper } from './styles'
 
 export default function SignINPage() {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const user = useSelector(state => state.user);
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const user = useSelector((state) => state.user)
 
   const onClick = () => {
-    singIn().then(data =>
-      dispatch(
-        setUserInfo({
-          isLogged: true,
-          name: `${data.displayName}`,
-          photoUrl: `${data.providerData[0].photoURL}`,
-        })
-      ),
-    );
-  };
+    dispatch(SetuserSingInRequest())
+  }
 
   useEffect(() => {
     if (user.isLogged) {
-      history.push("/converter");
+      history.push(ROUT_FOR_CONVERTER_PAGE)
     }
-  }, [user.isLogged, history]);
+  }, [user.isLogged, history])
 
-  
-  if(user.isLogged) {
-    return null;
-  } 
+  if (user.isLogged) {
+    return null
+  }
 
   return (
     <Wrapper>
       <Button variant="outlined" onClick={onClick}>
-        Sing-in
+        <FormattedMessage id="signInLabel" defaultMessage="Sign-In" />
       </Button>
     </Wrapper>
-  );
+  )
 }

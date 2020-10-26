@@ -14,8 +14,15 @@ module.exports = {
     },
   },
   rules: {
-    "arrow-parens": ["error", "as-needed"],
-    semi: "error",
+    "arrow-parens": ["error", "always"],
+    "no-var": "error",
+    "semi": "error",
+    "indent": "error",
+    "no-multi-spaces": "error",
+    "space-in-parens": "error",
+    "no-multiple-empty-lines": "error",
+    "prefer-const": "error",
+    "no-use-before-define": "error",
     "prefer-destructuring": "error",
     "max-len": [
       "warn",

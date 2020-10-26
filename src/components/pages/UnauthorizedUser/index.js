@@ -1,3 +1,3 @@
-import UnauthorizedUser from "./component";
+import UnauthorizedUser from './component'
 
-export default UnauthorizedUser;
+export default UnauthorizedUser

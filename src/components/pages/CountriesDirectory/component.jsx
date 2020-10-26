@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react'
 
-import BasicLayout from "@/components/layouts/BasicLayout/component";
+import BasicLayout from '@/components/layouts/BasicLayout/component'
 
-import CountryList from "./List/component";
-import WorldMap from "./Map/component";
+import CountryList from '@/components/blocks/CountriesDirectoryList'
+import WorldMap from '@/components/blocks/CountriesDirectoryMap'
+import CountryDetails from '@/components/blocks/CountriesDirectoryDrawer'
 
-import { Wrapper } from "./style";
-import CountryDetails from "./Details/component";
+import { Wrapper } from './styles'
 
 export default function CountriesDirectory() {
   return (
@@ -17,5 +17,5 @@ export default function CountriesDirectory() {
         <CountryDetails />
       </Wrapper>
     </BasicLayout>
-  );
+  )
 }

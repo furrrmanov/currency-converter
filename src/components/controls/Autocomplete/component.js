@@ -1,3 +1,3 @@
-import { Autocomplete } from './style';
+import { Autocomplete } from './styles'
 
-export default Autocomplete;
+export default Autocomplete

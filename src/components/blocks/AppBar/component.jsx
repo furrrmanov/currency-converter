@@ -1,12 +1,20 @@
-import React from "react";
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React from 'react'
+import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
-import { userLogOut } from "@/actions";
-import RouterLink from "@/components/controls/RouterLink";
-import { singOut } from "@/utils/fireBase";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage } from 'react-intl'
+
+import { userLogOut } from '@/actions'
+import RouterLink from '@/components/controls/RouterLink'
+import { singOutGoogleAccountUsingFirebase } from '@/utils/fireBase'
+
+import {
+  ROUT_FOR_CONVERTER_PAGE,
+  ROUT_FOR_CACHE_PAGE,
+  ROUT_FOR_CHARTS_PAGE,
+  ROUT_FOR_DIRECTORY_PAGE,
+} from '@/constants'
 
 import {
   AppBar,
@@ -20,47 +28,68 @@ import {
   UserName,
   Img,
   MenuWrapper,
-} from "./style";
+} from './styles'
+
+const routerLinkInfo = [
+  {
+    className: 'caches-link',
+    id: 'cachesLink',
+    to: `${ROUT_FOR_CACHE_PAGE}`,
+    defaultMessage: 'value',
+  },
+  {
+    className: 'caches-link',
+    id: 'chartsLink',
+    to: `${ROUT_FOR_CHARTS_PAGE}`,
+    defaultMessage: 'charts',
+  },
+  {
+    className: 'caches-link',
+    id: 'converterLink',
+    to: `${ROUT_FOR_CONVERTER_PAGE}`,
+    defaultMessage: 'converter',
+  },
+  {
+    className: 'caches-link',
+    id: 'directoryLink',
+    to: `${ROUT_FOR_DIRECTORY_PAGE}`,
+    defaultMessage: 'directory',
+  },
+]
 
 export default function NavigationBar() {
-  const userName = useSelector(state => state.user.name);
-  const userPhotoUrl = useSelector(state => state.user.photoUrl);
-  const isLogged = useSelector(state => state.user.isLogged);
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const [userAnchorEl, setUserAnchorEl] = useState(null);
-  const [menuAnchorEl, setMenuAnchorEl] = useState(null);
-  const open = Boolean(userAnchorEl);
-  const openMenu = Boolean(menuAnchorEl);
+  const { name, photoUrl, isLogged } = useSelector((state) => state.user)
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const [userAnchorEl, setUserAnchorEl] = useState(null)
+  const [menuAnchorEl, setMenuAnchorEl] = useState(null)
+  const openUserMenu = Boolean(userAnchorEl)
+  const openNavigationMenu = Boolean(menuAnchorEl)
 
-  const handleUserMenu = event => {
-    setUserAnchorEl(event.currentTarget);
-  };
+  const handleUserMenuOnClick = (event) => {
+    setUserAnchorEl(event.currentTarget)
+  }
 
-  const handleMenu = event => {
-    setMenuAnchorEl(event.currentTarget);
-  };
+  const handleNavigationMenuOnCLick = (event) => {
+    setMenuAnchorEl(event.currentTarget)
+  }
 
-  const closeMenu = () => {
-    setMenuAnchorEl(null);
-  };
+  const closeNavigationMenu = () => {
+    setMenuAnchorEl(null)
+  }
 
-  const handleMenuLink = event => {
-    history.push(`/${event.target.dataset.url}`);
-  };
-
-  const handleClose = () => {
-    setUserAnchorEl(null);
-  };
+  const CloseUserMenu = () => {
+    setUserAnchorEl(null)
+  }
 
   const userSingOut = () => {
-    setUserAnchorEl(null);
-    dispatch(userLogOut(false));
-    singOut();
-    history.push("/singIn");
-  };
+    setUserAnchorEl(null)
+    dispatch(userLogOut(false))
+    singOutGoogleAccountUsingFirebase()
+    history.push('/singIn')
+  }
 
-  const userPhoto = <Img src={`${userPhotoUrl}`} alt="" />;
+  const userPhoto = <Img src={`${photoUrl}`} alt="" />
 
   return (
     <Wrapper>
@@ -72,8 +101,7 @@ export default function NavigationBar() {
               className={{}}
               color="inherit"
               aria-label="menu"
-              onClick={handleMenu}
-            >
+              onClick={handleNavigationMenuOnCLick}>
               <MenuIcon className="menu-icon" />
             </IconButton>
 
@@ -81,56 +109,60 @@ export default function NavigationBar() {
               id="menu-appbar"
               anchorEl={menuAnchorEl}
               anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
-              open={openMenu}
-              onClose={closeMenu}
-            >
-              <MenuItem onClick={handleMenuLink} data-url="cache">
-                <FormattedMessage id="cachesLink" value="cache" defaultMessage="value" />
-              </MenuItem>
-              <MenuItem onClick={handleMenuLink} data-url="charts">
-                <FormattedMessage id="chartsLink" defaultMessage="charts" />
-              </MenuItem>
-              <MenuItem onClick={handleMenuLink} data-url="converter">
-                <FormattedMessage id="converterLink" defaultMessage="converter" />
-              </MenuItem>
-              <MenuItem onClick={handleMenuLink} data-url="directory">
-                <FormattedMessage id="directoryLink" defaultMessage="directory" />
-              </MenuItem>
+              open={openNavigationMenu}
+              onClose={closeNavigationMenu}>
+
+              {routerLinkInfo.map((item) => {
+                return (
+                  <MenuItem key={item.to} style={{ backGround: 'red' }}>
+                    <RouterLink
+                      key={item.to}
+                      to={item.to}
+                      className={item.className}>
+                      <FormattedMessage
+                        id={item.id}
+                        defaultMessage={item.defaultMessage}
+                      />
+                    </RouterLink>
+                  </MenuItem>
+                )
+              })}
+
             </Menu>
           </MenuWrapper>
 
           <div>
-            <RouterLink to="cache" className="caches-link">
-              <FormattedMessage id="cachesLink" defaultMessage="value" />
-            </RouterLink>
-            <RouterLink to="charts" className="caches-link">
-              <FormattedMessage id="chartsLink" defaultMessage="charts" />
-            </RouterLink>
-            <RouterLink to="converter" className="caches-link">
-              <FormattedMessage id="converterLink" defaultMessage="converter" />
-            </RouterLink>
-            <RouterLink to="directory" className="caches-link">
-              <FormattedMessage id="directoryLink" defaultMessage="directory" />
-            </RouterLink>
+            {routerLinkInfo.map((item) => {
+              return (
+                <RouterLink
+                  key={item.to}
+                  to={item.to}
+                  className={item.className}>
+                  <FormattedMessage
+                    id={item.id}
+                    defaultMessage={item.defaultMessage}
+                  />
+                </RouterLink>
+              )
+            })}
           </div>
 
           <div>
-            <UserName>{isLogged ? userName : ""}</UserName>
+            <UserName>{isLogged ? name : ''}</UserName>
             <IconButton
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleUserMenu}
-              color="inherit"
-            >
+              onClick={handleUserMenuOnClick}
+              color="inherit">
               {isLogged ? userPhoto : <AccountCircle />}
             </IconButton>
 
@@ -138,17 +170,16 @@ export default function NavigationBar() {
               id="menu-appbar"
               anchorEl={userAnchorEl}
               anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
-              open={open}
-              onClose={handleClose}
-            >
+              open={openUserMenu}
+              onClose={CloseUserMenu}>
               <MenuItem onClick={userSingOut}>
                 <FormattedMessage id="logOutButton" defaultMessage="Log-uot" />
               </MenuItem>
@@ -157,5 +188,5 @@ export default function NavigationBar() {
         </Toolbar>
       </AppBar>
     </Wrapper>
-  );
+  )
 }

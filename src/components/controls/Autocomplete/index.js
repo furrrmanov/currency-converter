@@ -1,3 +1,3 @@
-import Autocomplete from "./component";
+import Autocomplete from './component'
 
-export default Autocomplete;
+export default Autocomplete

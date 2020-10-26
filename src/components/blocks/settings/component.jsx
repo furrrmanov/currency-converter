@@ -1,15 +1,14 @@
-import React from 'react';
+import React from 'react'
 
-import SelectLangButton from './SelectLangButton';
-import SwitchThemeButton from './SwitchThemeButton';
-import { HeaderWrapper } from './style';
+import LanguageSelector from './LanguageSelector'
+import SwitchThemeButton from './SwitchButton'
+import { HeaderWrapper } from './styles'
 
 export default function Settings() {
-
-  return(
+  return (
     <HeaderWrapper>
-      <SelectLangButton />
+      <LanguageSelector />
       <SwitchThemeButton />
     </HeaderWrapper>
-  );
+  )
 }
